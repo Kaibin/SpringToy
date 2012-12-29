@@ -4,6 +4,6 @@
 
 <div id="header" class="span12">
 	<div id="title">
-	    <h1>QuickStart示例</h1>
+	    <h1>示例</h1>
 	</div>
 </div>
