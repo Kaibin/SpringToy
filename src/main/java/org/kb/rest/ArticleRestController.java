@@ -36,7 +36,7 @@ public class ArticleRestController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") Long id) {
-		Article article = articleService.getTask(id);
+		Article article = articleService.getArticle(id);
 		if (article == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}

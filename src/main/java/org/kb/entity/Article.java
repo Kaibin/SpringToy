@@ -2,7 +2,6 @@ package org.kb.entity;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -40,7 +39,7 @@ public class Article extends IdEntity{
 		this.date = date;
 	}
 
-	@ManyToOne(cascade={CascadeType.ALL})
+	@ManyToOne
 	@JoinColumn(name="category_id")
 	public Category getCategory() {
 		return category;
