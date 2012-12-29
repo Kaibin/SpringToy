@@ -5,7 +5,7 @@
 
 <html>
 <head>
-	<title>文章管理${ctx }</title>
+	<title>文章管理${ctx}</title>
 </head>
 
 <body>

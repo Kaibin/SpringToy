@@ -20,7 +20,7 @@ public class ArticleService {
 	
 	private ArticleDao articleDao;
 	
-	public Article getTask(Long id) {
+	public Article getArticle(Long id) {
 		return articleDao.findOne(id);
 	}
 	

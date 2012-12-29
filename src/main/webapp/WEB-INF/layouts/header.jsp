@@ -4,7 +4,6 @@
 
 <div id="header" class="span12">
 	<div id="title">
-	    <h1>QuickStart示例<small>--TodoList应用演示</small>
-		</h1>
+	    <h1>QuickStart示例</h1>
 	</div>
 </div>
