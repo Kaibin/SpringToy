@@ -22,8 +22,12 @@ create table article(
 )engine=InnoDB;
 
 insert into category(name) values("娱乐");
-insert into article(title,description,author,content,link,category_id)  values("华南理工","王迎君","info@herosordinaires.com (Oleiade)", "http://www.idaocao.com/yule_html/yl_chinanews/2008422122213_10260.shtml","http://www.idaocao.com/yule_html/yl_chinanews/2008422122213_10260.shtml", 1);
-insert into article(title,description,author,content,link,category_id)  values("电信学院","韦岗","info@herosordinaires.com (Oleiade)", "http://www.idaocao.com/yule_html/yl_chinanews/2008422122213_10260.shtml","http://www.idaocao.com/yule_html/yl_chinanews/2008422122213_10260.shtml", 1);
+insert into category(name) values("体育");
+
+insert into article(title,description,author,content,link,category_id)  values("成龙","电影","info@herosordinaires.com (Oleiade)", "http://www.idaocao.com/yule_html/yl_chinanews/2008422122213_10260.shtml","http://www.idaocao.com/yule_html/yl_chinanews/2008422122213_10260.shtml", 1);
+insert into article(title,description,author,content,link,category_id)  values("周杰伦","音乐","info@herosordinaires.com (Oleiade)", "http://www.idaocao.com/yule_html/yl_chinanews/2008422122213_10260.shtml","http://www.idaocao.com/yule_html/yl_chinanews/2008422122213_10260.shtml", 1);
+insert into article(title,description,author,content,link,category_id)  values("篮球","詹姆斯","info@herosordinaires.com (Oleiade)", "http://www.idaocao.com/yule_html/yl_chinanews/2008422122213_10260.shtml","http://www.idaocao.com/yule_html/yl_chinanews/2008422122213_10260.shtml", 2);
+insert into article(title,description,author,content,link,category_id)  values("足球","罗纳尔多","info@herosordinaires.com (Oleiade)", "http://www.idaocao.com/yule_html/yl_chinanews/2008422122213_10260.shtml","http://www.idaocao.com/yule_html/yl_chinanews/2008422122213_10260.shtml", 2);
 
 
 
