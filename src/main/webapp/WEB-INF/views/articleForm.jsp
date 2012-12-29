@@ -18,9 +18,21 @@
 
 <body>
 	<form id="inputForm" action="${ctx}/article/${action}" method="post" class="form-horizontal">
-		<input type="hidden" name="id" value="${article.id}"/>
+		<input type="hidden" name="id" value="${article.id}">
+
 		<fieldset>
-			<legend><small>文章任务</small></legend>
+			<legend><small>管理文章</small></legend>
+
+			<div class="control-group">
+				<label for="category" class="control-label">类别:</label>
+				<div class="controls">
+					<select class="span3" name="categoryId">
+						<c:forEach items="${categories}" var="entry">
+							<option value="${entry.id}">${entry.name}</option>
+						</c:forEach>
+					</select>
+				</div>
+			</div>
 			<div class="control-group">
 				<label for="article_title" class="control-label">标题:</label>
 				<div class="controls">

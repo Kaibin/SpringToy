@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>QuickStart示例:<sitemesh:title/></title>
+<title>示例:<sitemesh:title/></title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta http-equiv="Cache-Control" content="no-store" />
 <meta http-equiv="Pragma" content="no-cache" />
@@ -19,11 +19,10 @@
 <script src="${ctx}/static/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/jquery-validation/1.9.0/jquery.validate.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/jquery-validation/1.9.0/messages_bs_cn.js" type="text/javascript"></script>
-
+<script src="${ctx}/static/bootstrap/2.1.0/js/bootstrap.min.js" type="text/javascript"></script>
 
 <sitemesh:head/>
 </head>
-
 <body>
 	<div class="container">
 		<%@ include file="/WEB-INF/layouts/header.jsp"%>
@@ -32,6 +31,5 @@
 		</div>
 		<%@ include file="/WEB-INF/layouts/footer.jsp"%>
 	</div>
-	<script src="${ctx}/static/bootstrap/2.1.0/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 </html>

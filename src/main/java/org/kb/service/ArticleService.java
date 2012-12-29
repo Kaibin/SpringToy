@@ -38,6 +38,11 @@ public class ArticleService {
 		return (List<Article>)articleDao.findAll();
 	}
 	
+	public Page<Article> getAllArticle(int pageNumber, int pageSize, String sortType) {
+		PageRequest pageRequest = buildPageRequest(pageNumber, pageSize, sortType);
+		return articleDao.findAll(pageRequest);
+	}
+	
 	public Page<Article> getCategoryArticle(Long categoryId, int pageNumber, int pageSize, String sortType) {
 		PageRequest pageRequest = buildPageRequest(pageNumber, pageSize, sortType);
 		return articleDao.findByCategoryId(categoryId, pageRequest);

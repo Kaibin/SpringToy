@@ -5,7 +5,7 @@
 
 <html>
 <head>
-	<title>文章管理${ctx}</title>
+	<title>文章管理</title>
 </head>
 
 <body>
@@ -14,6 +14,17 @@
 	</c:if>
 	
 	<tags:sort/>
+	
+	<div class="nav dropdown pull-left">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    	类别: ${categories[categoryId].name}<b class="caret"></b>
+    </a>
+	<ul class="dropdown-menu" >
+	   	<c:forEach items="${categories}" var="entry">
+	   		<li><a href="?category=${entry.id}">${entry.name}</a></li>
+		</c:forEach>
+	</ul>
+	</div>
 	
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead><tr><th>文章</th><th>管理</th></tr></thead>
@@ -27,7 +38,8 @@
 		</tbody>
 	</table>
 	
+	<tags:pagination page="${articles}" paginationSize="5"/>
 	
-	<div><a class="tbn" href="${ctx}/article/create">创建</a></div>
+	<div><a class="btn" href="${ctx}/article/create">新建文章</a></div>
 </body>
 </html>
