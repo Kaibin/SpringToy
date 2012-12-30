@@ -7,7 +7,7 @@
     </a>
 	<ul class="dropdown-menu" >
 	   	<c:forEach items="${sortTypes}" var="entry">
-	   		<li><a href="?sortType=${entry.key}">${entry.value}</a></li>
+	   		<li><a href="?sortType=${entry.key}&category=${categoryId}">${entry.value}</a></li>
 		</c:forEach>
 	</ul>
 </div>
