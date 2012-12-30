@@ -28,7 +28,14 @@
 				<div class="controls">
 					<select class="span3" name="categoryId">
 						<c:forEach items="${categories}" var="entry">
-							<option value="${entry.id}">${entry.name}</option>
+							<c:choose>
+								<c:when test="${entry.id==article.category.id}">
+									<option selected value="${entry.id}">${entry.name}</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${entry.id}">${entry.name}</option>
+								</c:otherwise>
+							</c:choose>
 						</c:forEach>
 					</select>
 				</div>
