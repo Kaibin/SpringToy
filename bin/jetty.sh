@@ -1,3 +1,3 @@
 cd ..
-set MAVEN_OPTS=%MAVEN_OPTS% -XX:MaxPermSize=256M
-mvn jetty:run -Djetty.port=8080 
+export MAVEN_OPTS="-Xmx1024m -Xms512m -XX:MaxPermSize=256m"
+mvn -Djetty.port=8080 jetty:run  
