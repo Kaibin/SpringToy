@@ -2,7 +2,7 @@ package org.kb.service;
 
 import java.util.List;
 
-import org.kb.entity.Article;
+import org.kb.domain.Article;
 import org.kb.repository.ArticleDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

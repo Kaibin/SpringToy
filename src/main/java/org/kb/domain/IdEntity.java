@@ -1,4 +1,4 @@
-package org.kb.entity;
+package org.kb.domain;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

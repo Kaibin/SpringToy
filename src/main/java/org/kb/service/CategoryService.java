@@ -2,7 +2,7 @@ package org.kb.service;
 
 import java.util.List;
 
-import org.kb.entity.Category;
+import org.kb.domain.Category;
 import org.kb.repository.CategoryDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -17,7 +17,7 @@
 </head>
 
 <body>
-	<form id="inputForm" action="${ctx}/article/${action}" method="post" class="form-horizontal">
+	<form id="inputForm" action="${ctx}/article/${action}" method="post" enctype="multipart/form-data" class="form-horizontal">
 		<input type="hidden" name="id" value="${article.id}">
 
 		<fieldset>
@@ -26,14 +26,16 @@
 			<div class="control-group">
 				<label for="category" class="control-label">类别:</label>
 				<div class="controls">
-					<select class="span3" name="categoryId">
+					<select class="span3 required" name="categoryId">
 						<c:forEach items="${categories}" var="entry">
 							<c:choose>
 								<c:when test="${entry.id==article.category.id}">
 									<option selected value="${entry.id}">${entry.name}</option>
 								</c:when>
 								<c:otherwise>
+									<c:if test="${entry.id != '0'}">
 									<option value="${entry.id}">${entry.name}</option>
+									</c:if>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
@@ -43,7 +45,7 @@
 			<div class="control-group">
 				<label for="article_title" class="control-label">标题:</label>
 				<div class="controls">
-					<input type="text" id="article_title" name="title"  value="${article.title}" class="input-large required" minlength="3"/>
+					<input type="text" id="article_title" name="title"  value="${article.title}" class="input-large required">
 				</div>
 			</div>	
 			<div class="control-group">
@@ -55,7 +57,7 @@
 			<div class="control-group">
 				<label for=author class="control-label">作者:</label>
 				<div class="controls">
-					<input type="text" id="author" name="author" value="${article.author}" class="input-large required" minlength="3"/>
+					<input type="text" id="author" name="author" value="${article.author}" class="input-large required">
 				</div>
 			</div>
 			<div class="control-group">
@@ -67,7 +69,13 @@
 			<div class="control-group">
 				<label for=link class="control-label">链接:</label>
 				<div class="controls">
-					<input type="text" id="link" name="link" value="${article.link}" class="input-large required" minlength="3"/>
+					<input type="text" id="link" name="link" value="${article.link}" class="input-large required">
+				</div>
+			</div>	
+			<div class="control-group">
+				<label for=link class="control-label">附件:</label>
+				<div class="controls">
+					<input type="file" id="file" name="file">
 				</div>
 			</div>	
 			<div class="form-actions">
