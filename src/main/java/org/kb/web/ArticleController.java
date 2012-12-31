@@ -1,12 +1,18 @@
 package org.kb.web;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.ServletContext;
 import javax.validation.Valid;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-import org.kb.entity.Article;
-import org.kb.entity.Category;
+import org.kb.domain.Article;
+import org.kb.domain.Category;
 import org.kb.service.ArticleService;
 import org.kb.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,18 +24,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.ServletContextAware;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.common.collect.Maps;
 
 @Controller
 @RequestMapping(value = "/article")
-public class ArticleController {
-	Logger logger = Logger.getLogger(ArticleController.class);
+public class ArticleController implements ServletContextAware{ //实现ServletContextAware接口，获取本地路径
 	
+	private ServletContext servletContext;	
 	private static final int PAGE_SIZE = 3;
 	private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
-	
+	private Logger logger = Logger.getLogger(ArticleController.class);
+
 	@Autowired
 	private ArticleService articleService;
 	@Autowired
@@ -85,10 +94,17 @@ public class ArticleController {
 	}
 	
 	@RequestMapping(value = "create", method = RequestMethod.POST)
-	public String create(@Valid Article article, @ModelAttribute("categoryId")String categoryId, RedirectAttributes redirectAttributes) {
+	public String create(@Valid Article article, @ModelAttribute("categoryId")String categoryId, 
+			@ModelAttribute("file") MultipartFile file, RedirectAttributes redirectAttributes) throws IOException {
 		Category category = categoryService.getCategory(Long.valueOf(categoryId));
 		article.setCategory(category);
-		
+		if (!file.isEmpty()) {
+			 InputStream is = file.getInputStream();  
+			 String uploadPath = this.servletContext.getRealPath("upload") + File.separator + file.getOriginalFilename();
+		     FileUtils.copyInputStreamToFile(is, new File(uploadPath)); 
+		     article.setAttachment(uploadPath);
+			 logger.info("---upload file to: " + uploadPath);
+		}
 		articleService.saveArticle(article);
 		redirectAttributes.addFlashAttribute("message", "创建成功");
 		return "redirect:/article/";
@@ -102,9 +118,17 @@ public class ArticleController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(@Valid @ModelAttribute("article") Article article, @ModelAttribute("categoryId")String categoryId, RedirectAttributes redirectAttributes) {
+	public String update(@Valid @ModelAttribute("article") Article article, @ModelAttribute("categoryId")String categoryId, 
+							@ModelAttribute("file") MultipartFile file, RedirectAttributes redirectAttributes) throws IOException{
 		Category category = categoryService.getCategory(Long.valueOf(categoryId));
 		article.setCategory(category);
+		if (!file.isEmpty()) {
+			 InputStream is = file.getInputStream();  
+			 String uploadPath = this.servletContext.getRealPath("upload") + File.separator + file.getOriginalFilename();
+		     FileUtils.copyInputStreamToFile(is, new File(uploadPath)); 
+		     article.setAttachment(uploadPath);
+			 logger.info("---upload file to: " + uploadPath);
+		}
 		articleService.saveArticle(article);
 		redirectAttributes.addFlashAttribute("message","更新成功");
 		return "redirect:/article/";
@@ -118,5 +142,8 @@ public class ArticleController {
 
 	}
 
-	
+	@Override
+	 public void setServletContext(ServletContext servletContext) { //实现接口中的setServletContext方法
+	  this.servletContext = servletContext;
+	 }	
 }

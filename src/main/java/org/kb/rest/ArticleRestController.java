@@ -3,7 +3,7 @@ package org.kb.rest;
 import java.net.URI;
 import java.util.List;
 
-import org.kb.entity.Article;
+import org.kb.domain.Article;
 import org.kb.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

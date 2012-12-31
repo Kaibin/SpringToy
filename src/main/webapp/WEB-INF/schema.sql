@@ -17,6 +17,7 @@ create table article(
     author varchar(16),
     content varchar(255),
     link varchar(128),
+    attachment varchar(128),
     category_id bigint not null,
     primary key(id)	    
 )engine=InnoDB;

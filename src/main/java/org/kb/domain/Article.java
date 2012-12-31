@@ -1,4 +1,4 @@
-package org.kb.entity;
+package org.kb.domain;
 
 import java.util.Date;
 
@@ -17,6 +17,7 @@ public class Article extends IdEntity{
 	private String content;
 	private String author;
 	private String link;
+	private String attachment;
 	private Date date;
 	private Category category;
 
@@ -84,6 +85,15 @@ public class Article extends IdEntity{
 	}
 	public void setLink(String link) {
 		this.link = link;
+	}
+	
+	@Column(name="attachment")
+	public String getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(String attachment) {
+		this.attachment = attachment;
 	}
 	
 	@Column(name="date")
