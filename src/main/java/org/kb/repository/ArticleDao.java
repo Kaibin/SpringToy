@@ -1,6 +1,6 @@
 package org.kb.repository;
 
-import org.kb.entity.Article;
+import org.kb.domain.Article;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;

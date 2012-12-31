@@ -1,4 +1,4 @@
-package org.kb.entity;
+package org.kb.domain;
 
 import java.util.List;
 
