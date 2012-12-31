@@ -39,7 +39,10 @@
 	</table>
 	
 	<tags:pagination page="${articles}" paginationSize="5"/>
-	
-	<div><a class="btn" href="${ctx}/article/create">新建文章</a></div>
+
+	<div>
+		<a class="btn" href="${ctx}/article/create">新建文章</a> 
+		<a class="btn" href="${ctx}/category/create">新建分类</a>
+	</div>
 </body>
 </html>
