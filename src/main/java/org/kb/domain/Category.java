@@ -10,10 +10,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 @Entity
 @Table(name = "category")
 public class Category extends IdEntity {
+	
+	private static final long serialVersionUID = 8384192166031657473L;
+	
+	@Field("name")
 	private String name;
+	
 	private List<Article> articles;
 
 	public Category() {
@@ -22,11 +29,6 @@ public class Category extends IdEntity {
 
 	public Category(Long id) {
 		this.id = id;
-	}
-	
-	public Category(String name) {
-		super();
-		this.name = name;
 	}
 
 
