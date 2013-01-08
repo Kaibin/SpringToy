@@ -3,7 +3,8 @@ package org.kb.service;
 import java.util.List;
 
 import org.kb.domain.Article;
-import org.kb.repository.ArticleDao;
+import org.kb.repository.ArticleRepository;
+import org.kb.repository.ArticleRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,34 +19,43 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class ArticleService {
 	
-	private ArticleDao articleDao;
+	private ArticleRepository articleRepository;
 	
 	public Article getArticle(Long id) {
-		return articleDao.findOne(id);
+		return articleRepository.findOne(id);
 	}
 	
 	@Transactional(readOnly = false)
 	public void saveArticle(Article article) {
-		articleDao.save(article);
+		articleRepository.save(article);
 	}
 	
 	@Transactional(readOnly = false)
 	public void deleteArticle(Long id) {
-		articleDao.delete(id);
+		articleRepository.delete(id);
 	}
 	
 	public List<Article> getAllArticle() {
-		return (List<Article>)articleDao.findAll();
+		return (List<Article>)articleRepository.findAll();
 	}
 	
 	public Page<Article> getAllArticle(int pageNumber, int pageSize, String sortType) {
 		PageRequest pageRequest = buildPageRequest(pageNumber, pageSize, sortType);
-		return articleDao.findAll(pageRequest);
+		return articleRepository.findAll(pageRequest);
+	}
+	
+	public Page<Article> searchArticle(String searchTerm, int pageNumber, int pageSize, String sortType) {
+		PageRequest pageRequest = buildPageRequest(pageNumber, pageSize, sortType);
+		return articleRepository.search(searchTerm, pageRequest);
+	}
+	
+	public Page<Article> searchArticle(String searchTerm) {
+		return articleRepository.search(searchTerm);
 	}
 	
 	public Page<Article> getCategoryArticle(Long categoryId, int pageNumber, int pageSize, String sortType) {
 		PageRequest pageRequest = buildPageRequest(pageNumber, pageSize, sortType);
-		return articleDao.findByCategoryId(categoryId, pageRequest);
+		return articleRepository.findByCategoryId(categoryId, pageRequest);
 	}
 	
 	private PageRequest buildPageRequest(int pageNumber, int pageSize, String sortType) {
@@ -59,8 +69,8 @@ public class ArticleService {
 	}
 	
 	@Autowired
-	public void setArticleDao(ArticleDao articleDao) {
-		this.articleDao = articleDao;
+	public void setArticleDao(ArticleRepository articleDao) {
+		this.articleRepository = articleDao;
 	}
 
 }
