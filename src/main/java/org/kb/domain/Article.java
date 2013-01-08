@@ -8,36 +8,38 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Table(name="article")
 public class Article extends IdEntity{
+	
+	private static final long serialVersionUID = -5170398606065544445L;
+
+	@Field("title")
 	private String title;
+	
+	@Field("description")
 	private String description;
+	
+	@Field("content")
 	private String content;
+	
+	@Field("author")
 	private String author;
+	
 	private String link;
+	
 	private String attachment;
+	
+	@Field("date")
 	private Date date;
+	
 	private Category category;
 
 	public Article() {
 		super();
-	}
-	
-	public Article(Long id) {
-		this.id = id;
-	}
-
-	public Article(String title, String description, String content,
-			String author, String link, Date date) {
-		super();
-		this.title = title;
-		this.description = description;
-		this.content = content;
-		this.author = author;
-		this.link = link;
-		this.date = date;
 	}
 
 	@ManyToOne
@@ -57,6 +59,7 @@ public class Article extends IdEntity{
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
 	@Column(name="description")
 	public String getDescription() {
 		return description;
@@ -64,6 +67,7 @@ public class Article extends IdEntity{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
 	@Column(name="content")
 	public String getContent() {
 		return content;
@@ -71,6 +75,7 @@ public class Article extends IdEntity{
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
 	@Column(name="author")
 	public String getAuthor() {
 		return author;
@@ -104,4 +109,14 @@ public class Article extends IdEntity{
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
+	@Override
+	public String toString() {
+		return "Article [id=" + id + ",title=" + title + ", description=" + description
+				+ ", content=" + content + ", author=" + author + ", link="
+				+ link + ", attachment=" + attachment + ", date=" + date
+				+ ", category=" + category + "]";
+	}
+	
+	
 }

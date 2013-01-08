@@ -62,8 +62,8 @@ public class ArticleController implements ServletContextAware{ //实现ServletCo
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(@RequestParam(value = "category", defaultValue = "0") String categoryId,
-			@RequestParam(value = "sortType", defaultValue = "auto") String sortType,
-			@RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model) {
+						@RequestParam(value = "sortType", defaultValue = "auto") String sortType,
+						@RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model) {
 		Page<Article> articles = null;
 		if (categoryId.equals("0")) {
 			articles = articleService.getAllArticle(pageNumber, PAGE_SIZE, sortType);
@@ -73,6 +73,16 @@ public class ArticleController implements ServletContextAware{ //实现ServletCo
 		model.addAttribute("articles", articles);
 		model.addAttribute("sortType", sortType);
 		model.addAttribute("categoryId",categoryId);
+		return "articleList";
+	}
+	
+	@RequestMapping(value = "search", method = RequestMethod.GET)
+	public String search(@RequestParam(value = "searchTerm", defaultValue = "*") String searchTerm,
+						@RequestParam(value = "sortType", defaultValue = "auto") String sortType,
+						@RequestParam(value = "page", defaultValue = "1") int pageNumber, Model model) {
+		Page<Article> articles = articleService.searchArticle(searchTerm, pageNumber, PAGE_SIZE, sortType);
+		model.addAttribute("articles", articles);
+		model.addAttribute("sortType", sortType);
 		return "articleList";
 	}
 	
