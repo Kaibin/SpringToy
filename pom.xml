@@ -262,7 +262,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>RestfulDemo</finalName>
+		<finalName>SpringToy</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
